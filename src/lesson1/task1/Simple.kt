@@ -104,12 +104,16 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 fun accountInThreeYears(initial: Int, percent: Int): Double = pow(1.0 + (percent / 100.0), 3.0) * initial
 
 =======
 fun accountInThreeYears(initial: Int, percent: Int): Double =((initial+initial*(percent/100.0))+(initial+initial*(percent/100.0))*(percent/100.0))+((initial+initial*(percent/100.0))+(initial+initial*(percent/100.0))*(percent/100.0))*(percent/100.0)
 >>>>>>> 183197c145930b19a0f38186c640a0aabbb75a4f
+=======
+fun accountInThreeYears(initial: Int, percent: Int): Double =((initial+initial*(percent/100.0))+(initial+initial*(percent/100.0))*(percent/100.0))+((initial+initial*(percent/100.0))+(initial+initial*(percent/100.0))*(percent/100.0))*(percent/100.0)
+>>>>>>> parent of 5a3ef2a... Исправил все ошибки
 
 /**
  * Простая
