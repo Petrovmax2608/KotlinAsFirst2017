@@ -3,7 +3,11 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
-      <file name="$USER_HOME$/Documents/GitHub/KotlinAsFirst2017/test/lesson2/task1/Tests.kt" timestamp="1507492109008" />
+      <file name="$USER_HOME$/Documents/GitHub/KotlinAsFirst2017/src/lesson1/task1/Simple.kt" timestamp="1508269890179">
+        <mark key="[" line="117" column="4" />
+        <mark key="]" line="117" column="4" />
+        <mark key="." line="117" column="4" />
+      </file>
       <file name="$USER_HOME$/Documents/GitHub/KotlinAsFirst2017/src/lesson2/task1/IfElse.kt" timestamp="1507492446989">
         <mark key="[" line="0" column="0" />
         <mark key="]" line="0" column="0" />
@@ -17,8 +21,7 @@
 package lesson2.task1</text>
       </register>
       <register name="&quot;" type="4">
-        <text>@file:Suppress(&quot;UNUSED_PARAMETER&quot;)
-package lesson2.task1</text>
+        <text encoding="base64">dmFsIA==</text>
       </register>
       <register name="2" type="4">
         <text>@file:Suppress(&quot;UNUSED_PARAMETER&quot;)
@@ -26,12 +29,20 @@ package lesson2.task1
 
 import lesson1.task1.discriminant</text>
       </register>
+      <register name="-" type="4">
+        <text encoding="base64">dmFsIA==</text>
+      </register>
     </registers>
     <search>
       <last-dir>0</last-dir>
       <show-last>false</show-last>
     </search>
-    <history />
+    <history>
+      <history-search />
+      <history-cmd />
+      <history-expr />
+      <history-input />
+    </history>
     <shortcut-conflicts />
   </component>
 </application>
