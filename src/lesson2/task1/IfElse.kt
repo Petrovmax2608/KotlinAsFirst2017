@@ -34,16 +34,14 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String {
-    if (age % 100 in 5..20)
-        return ("$age лет")
-    else if (age % 10 == 1)
-        return ("$age год")
-    else if (age % 10 in 2..4)
-        return ("$age года")
-    else
-        return ("$age лет")
-}
+fun ageDescription(age: Int): String =
+  when {
+      (age % 100 in 5..20) -> ("$age лет")
+      (age % 10 == 1) -> ("$age год")
+      (age % 10 in 2..4) -> ("$age года")
+      else -> ("$age лет")
+  }
+
 
 /**
  * Простая
@@ -111,8 +109,18 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
      * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
      * Если такой треугольник не существует, вернуть -1.
      */
-    fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
-
+    fun triangleKind(a: Double, b: Double, c: Double): Int {
+        val ASqr = a * a
+        val BSqr = b * b
+        val CSqr = c * c
+        if ((a+b <= c) || (a+c <= b) || (b+c<= a)) return -1
+        return when {
+            (ASqr == BSqr + CSqr) || (BSqr == ASqr+CSqr) || (CSqr == ASqr+BSqr) -> 1
+            (ASqr > BSqr + CSqr) || (BSqr > ASqr+CSqr) || (CSqr > ASqr+BSqr) -> 2
+            (ASqr < BSqr + CSqr) && (BSqr < ASqr+CSqr) && (CSqr < ASqr+BSqr) -> 0
+            else -> -1
+        }
+    }
     /**
      * Средняя
      *
