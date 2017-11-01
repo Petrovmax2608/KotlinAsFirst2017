@@ -129,5 +129,15 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
      * Найти длину пересечения отрезков AB и CD.
      * Если пересечения нет, вернуть -1.
      */
-    fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+    fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+        return when {
+            (a>=c) && (a<=d) && (d <= b) -> d-a
+            (a>=c) && (d>=b) -> b-a
+            (a<=c) && (d<=b) -> d-c
+            (a<=c) && (c<b) && (b<=d) -> b-c
+            (a<=d) && (d<=b) -> d-a
+            (a==d) || (b==c) -> 0
+            else -> -1
+        }
+    }
 
