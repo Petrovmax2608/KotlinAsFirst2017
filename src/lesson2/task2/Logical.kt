@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson2.task2
 
 import lesson1.task1.sqr
@@ -22,7 +23,7 @@ fun isNumberHappy(number: Int): Boolean {
     val two = number / 100 % 10
     val three = number % 100 / 10
     val four = number % 10
-    return (one+two == three + four)
+    return (one + two == three + four)
 }
 
 /**

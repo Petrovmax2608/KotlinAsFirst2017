@@ -35,12 +35,12 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
 fun ageDescription(age: Int): String =
-  when {
-      (age % 100 in 5..20) -> ("$age лет")
-      (age % 10 == 1) -> ("$age год")
-      (age % 10 in 2..4) -> ("$age года")
-      else -> ("$age лет")
-  }
+        when {
+            (age % 100 in 5..20) -> ("$age лет")
+            (age % 10 == 1) -> ("$age год")
+            (age % 10 in 2..4) -> ("$age года")
+            else -> ("$age лет")
+        }
 
 
 /**
@@ -75,69 +75,71 @@ fun timeForHalfWay(t1: Double, v1: Double,
  */
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
-                       rookX2: Int, rookY2: Int): Int  {
+                       rookX2: Int, rookY2: Int): Int {
     val zx1 = kingX == rookX1
     val zx2 = kingX == rookX2
     val zy1 = kingY == rookY1
     val zy2 = kingY == rookY2
-     return when {
-         (zx1 || zx2) && (zy1 || zy2) -> 3
-         (zx1 || zy1) -> 1
-         (zx2 || zy2) -> 2
-         else -> 0
-     }
+    return when {
+        (zx1 || zx2) && (zy1 || zy2) -> 3
+        (zx1 || zy1) -> 1
+        (zx2 || zy2) -> 2
+        else -> 0
+    }
 }
-    /**
-     * Простая
-     *
-     * На шахматной доске стоят черный король и белые ладья и слон
-     * (ладья бьет по горизонтали и вертикали, слон — по диагоналям).
-     * Проверить, есть ли угроза королю и если есть, то от кого именно.
-     * Вернуть 0, если угрозы нет, 1, если угроза только от ладьи, 2, если только от слона,
-     * и 3, если угроза есть и от ладьи и от слона.
-     * Считать, что ладья и слон не могут загораживать друг друга.
-     */
-    fun rookOrBishopThreatens(kingX: Int, kingY: Int,
-                              rookX: Int, rookY: Int,
-                              bishopX: Int, bishopY: Int): Int = TODO()
 
-    /**
-     * Простая
-     *
-     * Треугольник задан длинами своих сторон a, b, c.
-     * Проверить, является ли данный треугольник остроугольным (вернуть 0),
-     * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
-     * Если такой треугольник не существует, вернуть -1.
-     */
-    fun triangleKind(a: Double, b: Double, c: Double): Int {
-        val ASqr = a * a
-        val BSqr = b * b
-        val CSqr = c * c
-        if ((a+b <= c) || (a+c <= b) || (b+c<= a)) return -1
-        return when {
-            (ASqr == BSqr + CSqr) || (BSqr == ASqr+CSqr) || (CSqr == ASqr+BSqr) -> 1
-            (ASqr > BSqr + CSqr) || (BSqr > ASqr+CSqr) || (CSqr > ASqr+BSqr) -> 2
-            (ASqr < BSqr + CSqr) && (BSqr < ASqr+CSqr) && (CSqr < ASqr+BSqr) -> 0
-            else -> -1
-        }
+/**
+ * Простая
+ *
+ * На шахматной доске стоят черный король и белые ладья и слон
+ * (ладья бьет по горизонтали и вертикали, слон — по диагоналям).
+ * Проверить, есть ли угроза королю и если есть, то от кого именно.
+ * Вернуть 0, если угрозы нет, 1, если угроза только от ладьи, 2, если только от слона,
+ * и 3, если угроза есть и от ладьи и от слона.
+ * Считать, что ладья и слон не могут загораживать друг друга.
+ */
+fun rookOrBishopThreatens(kingX: Int, kingY: Int,
+                          rookX: Int, rookY: Int,
+                          bishopX: Int, bishopY: Int): Int = TODO()
+
+/**
+ * Простая
+ *
+ * Треугольник задан длинами своих сторон a, b, c.
+ * Проверить, является ли данный треугольник остроугольным (вернуть 0),
+ * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
+ * Если такой треугольник не существует, вернуть -1.
+ */
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    val asqr = a * a
+    val bsqr = b * b
+    val csqr = c * c
+    if ((a + b <= c) || (a + c <= b) || (b + c <= a)) return -1
+    return when {
+        (asqr == bsqr + csqr) || (bsqr == asqr + csqr) || (csqr == asqr + bsqr) -> 1
+        (asqr > bsqr + csqr) || (bsqr > asqr + csqr) || (csqr > asqr + bsqr) -> 2
+        (asqr < bsqr + csqr) && (bsqr < asqr + csqr) && (csqr < asqr + bsqr) -> 0
+        else -> -1
     }
-    /**
-     * Средняя
-     *
-     * Даны четыре точки на одной прямой: A, B, C и D.
-     * Координаты точек a, b, c, d соответственно, b >= a, d >= c.
-     * Найти длину пересечения отрезков AB и CD.
-     * Если пересечения нет, вернуть -1.
-     */
-    fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
-        return when {
-            (a>=c) && (a<=d) && (d <= b) -> d-a
-            (a>=c) && (d>=b) -> b-a
-            (a<=c) && (d<=b) -> d-c
-            (a<=c) && (c<b) && (b<=d) -> b-c
-            (a<=d) && (d<=b) -> d-a
-            (a==d) || (b==c) -> 0
-            else -> -1
-        }
+}
+
+/**
+ * Средняя
+ *
+ * Даны четыре точки на одной прямой: A, B, C и D.
+ * Координаты точек a, b, c, d соответственно, b >= a, d >= c.
+ * Найти длину пересечения отрезков AB и CD.
+ * Если пересечения нет, вернуть -1.
+ */
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+    return when {
+        (a >= c) && (a <= d) && (d <= b) -> d - a
+        (a >= c) && (d >= b) -> b - a
+        (a <= c) && (d <= b) -> d - c
+        (a <= c) && (c < b) && (b <= d) -> b - c
+        (a <= d) && (d <= b) -> d - a
+        (a == d) || (b == c) -> 0
+        else -> -1
     }
+}
 

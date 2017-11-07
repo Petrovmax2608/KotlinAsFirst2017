@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson3.task1
 
 import java.lang.Math.abs
@@ -36,7 +37,7 @@ fun isPrime(n: Int): Boolean {
  */
 fun isPerfect(n: Int): Boolean {
     var sum = 1
-    for (m in 2..n/2) {
+    for (m in 2..n / 2) {
         if (n % m > 0) continue
         sum += m
         if (sum > n) break
@@ -65,10 +66,13 @@ fun digitCountInNumber(n: Int, m: Int): Int =
 fun digitNumber(n: Int): Int {
     var x1 = 0
     var x2 = abs(n)
-    do {x2 /= 10
-        x1++}
-        while (x2 > 0)
-    return x1}
+    do {
+        x2 /= 10
+        x1++
+    } while (x2 > 0)
+    return x1
+}
+
 /**
  * Простая
  *
