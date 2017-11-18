@@ -2,7 +2,10 @@
 
 package lesson3.task1
 
+import lesson1.task1.sqr
+import java.lang.Character.digit
 import java.lang.Math.abs
+import java.lang.Math.pow
 
 /**
  * Пример
@@ -86,7 +89,8 @@ fun fib(n: Int): Int {
     for (i in 2..n) {
         number = x1 + x2
         x2 = x1
-        x1 = number}
+        x1 = number
+    }
     return number
 }
 
@@ -114,7 +118,7 @@ fun lcm(m: Int, n: Int): Int {
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    for (i in 2..(n/2)) {
+    for (i in 2..(n / 2)) {
         if (n % i == 0) return i
     }
     return n
@@ -126,8 +130,8 @@ fun minDivisor(n: Int): Int {
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
 fun maxDivisor(n: Int): Int {
-    for (i in n/2 downTo 1) {
-        if (n%i == 0) return i
+    for (i in n / 2 downTo 1) {
+        if (n % i == 0) return i
     }
     return n
 }
@@ -174,7 +178,16 @@ fun cos(x: Double, eps: Double): Double = TODO()
  * Поменять порядок цифр заданного числа n на обратный: 13478 -> 87431.
  * Не использовать строки при решении задачи.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var x1 = n
+    var x2 = 0
+    while (x1 > 0) {
+        x2 = x2 * 10 + x1 % 10
+        x1 = x1 / 10
+    }
+    return x2
+}
+
 
 /**
  * Средняя
@@ -183,7 +196,7 @@ fun revert(n: Int): Int = TODO()
  * первая цифра равна последней, вторая -- предпоследней и так далее.
  * 15751 -- палиндром, 3653 -- нет.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean = n == revert(n)
 
 /**
  * Средняя
@@ -191,7 +204,16 @@ fun isPalindrome(n: Int): Boolean = TODO()
  * Для заданного числа n определить, содержит ли оно различающиеся цифры.
  * Например, 54 и 323 состоят из разных цифр, а 111 и 0 из одинаковых.
  */
-fun hasDifferentDigits(n: Int): Boolean = TODO()
+fun hasDifferentDigits(n: Int): Boolean {
+    var x = n
+    var y = n % 10
+    while (x != 0) {
+        if (y != x % 10)
+            return true
+        x /= 10
+    }
+    return false
+}
 
 /**
  * Сложная
@@ -200,7 +222,19 @@ fun hasDifferentDigits(n: Int): Boolean = TODO()
  * 149162536496481100121144...
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var x = n
+    var y = 1
+    var z = 1
+    var i = 1
+    while (y < x) {
+        x -= y
+        i += 1
+        z = i * i
+        y = digitNumber(z)
+    }
+    return (z / pow(10.0, y - x * 1.0).toInt()) % 10
+}
 
 /**
  * Сложная
@@ -209,4 +243,15 @@ fun squareSequenceDigit(n: Int): Int = TODO()
  * 1123581321345589144...
  * Например, 2-я цифра равна 1, 9-я 2, 14-я 5.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+fun fibSequenceDigit(n: Int): Int {
+    var x = 1
+    var y = 0
+    var z = x + y
+    var i = 1
+    while (i < n) {
+        y = x
+        x = z
+        i += digitNumber(z)
+    }
+    return (z / pow(10.0, i - n * 1.0).toInt()) % 10
+}
