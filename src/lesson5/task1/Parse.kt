@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson5.task1
 
 import java.lang.Exception
@@ -51,12 +52,10 @@ fun main(args: Array<String>) {
         val seconds = timeStrToSeconds(line)
         if (seconds == -1) {
             println("Введённая строка $line не соответствует формату ЧЧ:ММ:СС")
-        }
-        else {
+        } else {
             println("Прошло секунд с начала суток: $seconds")
         }
-    }
-    else {
+    } else {
         println("Достигнут <конец файла> в процессе чтения строки. Программа прервана")
     }
 }
@@ -77,7 +76,7 @@ fun dateStrToDigit(str: String): String {
         val day = date[0].toInt()
         val mon = month.indexOf(date[1]) + 1
         val year = date[2].toInt()
-        if (day in 1 .. 31 && mon in 1 .. 12 && date.size == 3)
+        if (day in 1..31 && mon in 1..12 && date.size == 3)
             return format("%02d.%02d.%d", day, mon, year)
     } catch (e: Exception) {
         return ""
@@ -102,8 +101,7 @@ fun dateDigitToStr(digital: String): String {
         val year = date[2].toInt()
         if (day in 1..24 && mon in 1..12 && date.size == 3)
             return "$day ${month[mon - 1]} $year"
-    }
-    catch (e: Exception) {
+    } catch (e: Exception) {
         return ""
     }
     return ""
