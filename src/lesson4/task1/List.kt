@@ -4,7 +4,10 @@ package lesson4.task1
 
 import lesson1.task1.discriminant
 import lesson1.task1.sqr
+import lesson3.task1.hasDifferentDigits
+import java.lang.Math.pow
 import java.lang.Math.sqrt
+import java.lang.StringBuilder
 
 /**
  * Пример
@@ -236,7 +239,14 @@ fun convert(n: Int, base: Int): List<Int> {
  * строчными буквами: 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
-fun convertToString(n: Int, base: Int): String = TODO()
+fun convertToString(n: Int, base: Int): String {
+    val x = ('0'..'9') + ('a'..'z')
+    val b = StringBuilder("")
+    val y = convert(n, base)
+    for (i in y)
+        b.append(x[i])
+    return b.toString()
+}
 
 /**
  * Средняя
@@ -245,7 +255,15 @@ fun convertToString(n: Int, base: Int): String = TODO()
  * из системы счисления с основанием base в десятичную.
  * Например: digits = (1, 3, 12), base = 14 -> 250
  */
-fun decimal(digits: List<Int>, base: Int): Int = TODO()
+fun decimal(digits: List<Int>, base: Int): Int {
+    var x = 0
+    var y = pow(base.toDouble(), digits.size - 1.0).toInt()
+    for (elements in digits) {
+        x += elements * y
+        y /= base
+    }
+    return x
+}
 
 /**
  * Сложная
@@ -256,7 +274,13 @@ fun decimal(digits: List<Int>, base: Int): Int = TODO()
  * 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: str = "13c", base = 14 -> 250
  */
-fun decimalFromString(str: String, base: Int): Int = TODO()
+fun decimalFromString(str: String, base: Int): Int {
+    val x = ('0'..'9') + ('a'..'z')
+    var y = listOf<Int>()
+    for (i in 0 until str.length)
+        y += x.indexOf(str[i])
+    return decimal(y, base)
+}
 
 /**
  * Сложная
