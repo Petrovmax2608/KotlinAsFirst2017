@@ -246,12 +246,11 @@ fun squareSequenceDigit(n: Int): Int {
 fun fibSequenceDigit(n: Int): Int {
     var x = 1
     var y = 0
-    var z = x + y
     var i = 1
     while (i < n) {
-        y = x
-        x = z
-        i += digitNumber(z)
+        x += y
+        y = x - y
+        i += digitNumber(x)
     }
-    return (z / pow(10.0, i - n * 1.0).toInt()) % 10
+    return (x / pow(10.0, i - n * 1.0).toInt()) % 10
 }
