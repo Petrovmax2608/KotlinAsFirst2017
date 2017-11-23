@@ -3,6 +3,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import lesson1.task1.sqr
 
 /**
  * Пример
@@ -58,9 +59,9 @@ fun timeForHalfWay(t1: Double, v1: Double,
     val s3 = t3 * v3
     val s = (s1 + s2 + s3) / 2
     return when {
-        (s1 >= s) -> (s / v1)
-        (s2 + s1 > s) -> (t1 + (s - s1) / v2)
-        else -> (t1 + t2 + (s - s1 - s2) / v3)
+        s1 >= s -> s / v1
+        s2 + s1 > s -> t1 + (s - s1) / v2
+        else -> t1 + t2 + (s - s1 - s2) / v3
     }
 }
 
@@ -111,15 +112,11 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * Если такой треугольник не существует, вернуть -1.
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int {
-    if ((a + b <= c) || (a + c <= b) || (b + c <= a)) return -1
-    val asqr = a * a
-    val bsqr = b * b
-    val csqr = c * c
     return when {
-        (asqr == bsqr + csqr) || (bsqr == asqr + csqr) || (csqr == asqr + bsqr) -> 1
-        (asqr > bsqr + csqr) || (bsqr > asqr + csqr) || (csqr > asqr + bsqr) -> 2
-        (asqr < bsqr + csqr) && (bsqr < asqr + csqr) && (csqr < asqr + bsqr) -> 0
-        else -> -1
+        (a + b < c || a + c < b || b + c < a) -> -1
+        (sqr(a) + sqr(b) == sqr(c) || sqr(b) + sqr(c) == sqr(a) || sqr(a) + sqr(c) == sqr(b)) -> 1
+        (sqr(a) + sqr(b) < sqr(c) || sqr(b) + sqr(c) < sqr(a) || sqr(a) + sqr(c) < sqr(b)) -> 2
+        else -> 0
     }
 }
 

@@ -58,5 +58,21 @@ fun circleInside(x1: Double, y1: Double, r1: Double,
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean =
-        (a <= r && b <= s) || (a <= r && c <= s) || (b <= r && a <= s) || (b <= r && c <= s) || (c <= r && a <= s) || (c <= r && b <= s)
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
+    if (a <= r) {
+        when (b <= s || c <= s) {
+        }
+        return true
+    }
+    if (b <= r) {
+        when (a <= s || c <= s) {
+        }
+        return true
+    }
+    if (c <= r) {
+        when (a <= s || b <= s) {
+        }
+        return true
+    }
+    return false
+}
