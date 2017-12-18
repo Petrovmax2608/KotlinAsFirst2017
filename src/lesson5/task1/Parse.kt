@@ -2,8 +2,8 @@
 
 package lesson5.task1
 
-import java.lang.Exception
 import java.lang.String.format
+import java.text.NumberFormat
 
 /**
  * Пример
@@ -68,9 +68,10 @@ fun main(args: Array<String>) {
  * День и месяц всегда представлять двумя цифрами, например: 03.04.2011.
  * При неверном формате входной строки вернуть пустую строку
  */
+val month = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября",
+        "ноября", "декабря")
+
 fun dateStrToDigit(str: String): String {
-    val month = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября",
-            "ноября", "декабря")
     val date = str.split(" ")
     try {
         val day = date[0].toInt()
@@ -92,8 +93,6 @@ fun dateStrToDigit(str: String): String {
  * При неверном формате входной строки вернуть пустую строку
  */
 fun dateDigitToStr(digital: String): String {
-    val month = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября",
-            "ноября", "декабря")
     val date = digital.split(".")
     try {
         val day = date[0].toInt()
@@ -101,7 +100,7 @@ fun dateDigitToStr(digital: String): String {
         val year = date[2].toInt()
         if (day in 1..31 && mon in 1..12 && date.size == 3)
             return "$day ${month[mon - 1]} $year"
-    } catch (e: Exception) {
+    } catch (e: NumberFormatException) {
         return ""
     }
     return ""
@@ -138,7 +137,7 @@ fun bestLongJump(jumps: String): Int {
         if (i !in listOf("-", "%", " ")) try {
             if (y < i.toInt())
                 y = i.toInt()
-        } catch (e: Exception) {
+        } catch (e: NumberFormatException) {
             return -1
         }
     }
