@@ -73,13 +73,14 @@ val month = listOf("января", "февраля", "марта", "апреля
 
 fun dateStrToDigit(str: String): String {
     val date = str.split(" ")
+    if (date.size != 3) return ""
     try {
         val day = date[0].toInt()
         val mon = month.indexOf(date[1]) + 1
         val year = date[2].toInt()
         if (day in 1..31 && mon in 1..12 && date.size == 3)
             return format("%02d.%02d.%d", day, mon, year)
-    } catch (e: Exception) {
+    } catch (e: NumberFormatException) {
         return ""
     }
     return ""
@@ -95,11 +96,13 @@ fun dateStrToDigit(str: String): String {
 fun dateDigitToStr(digital: String): String {
     val date = digital.split(".")
     try {
-        val day = date[0].toInt()
-        val mon = date[1].toInt()
-        val year = date[2].toInt()
-        if (day in 1..31 && mon in 1..12 && date.size == 3)
-            return "$day ${month[mon - 1]} $year"
+        if (date.size ==3) {
+            val day = date[0].toInt()
+            val mon = date[1].toInt()
+            val year = date[2].toInt()
+            if (day in 1..31 && mon in 1..12 && date.size == 3)
+                return "$day ${month[mon - 1]} $year"
+        }
     } catch (e: NumberFormatException) {
         return ""
     }
@@ -132,15 +135,13 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  */
 fun bestLongJump(jumps: String): Int {
     val x = jumps.split(" ")
+            .filter {it != "" &&  it !="%" && it != "-"}
     var y = -1
-    for (i in x) {
-        if (i !in listOf("-", "%", " ")) try {
-            if (y < i.toInt())
-                y = i.toInt()
+       try {
+            for (i in x) y = Math.max(y, i.toInt())
         } catch (e: NumberFormatException) {
             return -1
         }
-    }
     return y
 }
 
